@@ -1,0 +1,472 @@
+:root {
+  --ink: #24312c;
+  --muted: #718078;
+  --paper: #f8f2e7;
+  --card: #fffdf8;
+  --rust: #be6040;
+  --line: #dcd5c9;
+  --gold: #d49b39;
+}
+html {
+  /* Keep the centered page rail fixed when one section needs a scrollbar. */
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+.page-shell {
+  max-width: 1090px;
+  margin: auto;
+  min-height: 100vh;
+  padding: 29px 36px 30px;
+  display: flex;
+  flex-direction: column;
+}
+.site-nav {
+  display: flex;
+  gap: 21px;
+  margin-top: 18px;
+  border-bottom: 1px solid var(--line);
+}
+.site-nav-link {
+  position: relative;
+  padding: 0 2px 12px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.site-nav-link.active {
+  color: var(--rust);
+}
+.site-nav-link.active::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: var(--rust);
+}
+.today-label,
+.time-zone {
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+.hero {
+  padding: 72px 0 48px;
+  max-width: 680px;
+}
+.eyebrow {
+  color: var(--rust);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  margin: 0 0 15px;
+}
+h1,
+h2 {
+  font-family: "Playfair Display", serif;
+  letter-spacing: -0.055em;
+  margin: 0;
+  font-weight: 600;
+}
+h1 {
+  font-size: clamp(45px, 7vw, 76px);
+  line-height: 1.04;
+}
+h1 em {
+  color: var(--rust);
+  font-weight: 500;
+}
+.intro {
+  max-width: 535px;
+  color: #5c6962;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 26px 0 0;
+}
+.home-panel {
+  max-width: 720px;
+  padding: 85px 0 92px;
+}
+.home-note {
+  display: flex;
+  gap: 22px;
+  max-width: 540px;
+  margin-top: 47px;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.home-note span {
+  color: var(--rust);
+  font:
+    500 12px "DM Mono",
+    monospace;
+}
+.home-note p {
+  margin: 0;
+  color: #5c6962;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.home-note strong {
+  color: var(--ink);
+}
+.calculator {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 20px 0;
+}
+.form-grid {
+  display: flex;
+  align-items: end;
+  gap: 12px;
+}
+.field {
+  display: grid;
+  gap: 7px;
+}
+.field span {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+}
+input,
+.location-button {
+  appearance: none;
+  border: 1px solid #cbc3b5;
+  background: var(--card);
+  color: var(--ink);
+  height: 46px;
+  border-radius: 5px;
+  padding: 0 13px;
+  font:
+    500 13px "Plus Jakarta Sans",
+    sans-serif;
+}
+input {
+  min-width: 175px;
+}
+.date-picker {
+  position: relative;
+  display: block;
+}
+.date-picker input {
+  width: 100%;
+  padding-right: 42px;
+}
+.calendar-button {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 42px;
+  height: 44px;
+  border: 0;
+  border-radius: 0 5px 5px 0;
+  background: transparent;
+  color: var(--rust);
+  cursor: pointer;
+  font-size: 18px;
+}
+.calendar-popup {
+  display: none;
+  position: absolute;
+  z-index: 6;
+  top: 52px;
+  left: 0;
+  width: 272px;
+  padding: 14px;
+  background: var(--card);
+  border: 1px solid #cbc3b5;
+  border-radius: 5px;
+  box-shadow: 0 12px 25px #50412a26;
+  color: var(--ink) !important;
+}
+.calendar-popup.open {
+  display: block;
+}
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.calendar-header strong {
+  font-size: 12px;
+}
+.calendar-selects {
+  display: flex;
+  gap: 5px;
+}
+.calendar-selects select {
+  height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--card);
+  color: var(--ink);
+  padding: 0 4px;
+  font:
+    600 11px "Plus Jakarta Sans",
+    sans-serif;
+}
+.calendar-header button {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--rust);
+  cursor: pointer;
+  font-size: 18px;
+}
+.calendar-header button:hover,
+.calendar-day:hover {
+  background: #f3ecdf;
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+.calendar-weekday {
+  padding: 4px 0 7px;
+  color: var(--muted) !important;
+  font-size: 9px !important;
+  font-weight: 700;
+  text-align: center;
+}
+.calendar-day {
+  height: 29px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 11px;
+}
+.calendar-day.selected {
+  background: var(--rust);
+  color: var(--card);
+}
+.calendar-day.blank {
+  pointer-events: none;
+}
+.city-picker {
+  position: relative;
+  display: block;
+}
+.city-picker input {
+  min-width: 240px;
+  width: 100%;
+}
+.city-results {
+  display: none;
+  position: absolute;
+  z-index: 5;
+  top: 52px;
+  width: 100%;
+  max-height: 244px;
+  overflow: auto;
+  background: var(--card);
+  border: 1px solid #cbc3b5;
+  border-radius: 5px;
+  box-shadow: 0 12px 25px #50412a26;
+}
+.city-results.open {
+  display: block;
+}
+.city-option {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #eee7da;
+  padding: 11px 13px;
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  font:
+    500 13px "Plus Jakarta Sans",
+    sans-serif;
+}
+.city-option:hover {
+  background: #f3ecdf;
+  color: var(--rust);
+}
+.location-button {
+  background: transparent;
+  border-color: transparent;
+  color: var(--rust);
+  cursor: pointer;
+  font-weight: 700;
+}
+.location-button span {
+  font-size: 21px;
+  vertical-align: -2px;
+  margin-right: 3px;
+}
+.location-button:hover {
+  background: #f0e6d8;
+}
+.result-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 27px;
+  padding: 47px 53px;
+  background: var(--card);
+  border: 1px solid #e4ddd1;
+  border-radius: 8px;
+  box-shadow: 0 15px 35px #896d4120;
+}
+.result-copy {
+  position: relative;
+  z-index: 1;
+}
+.result-copy .eyebrow {
+  margin-bottom: 8px;
+}
+.location-line {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0 0 11px;
+}
+.result-copy h2 {
+  color: var(--rust);
+  font-size: clamp(42px, 6vw, 66px);
+  line-height: 1;
+}
+.time-zone {
+  color: #8a918c;
+  margin: 15px 0 0;
+}
+.meridiem {
+  font-family: inherit;
+  font-size: 0.36em;
+  font-weight: 600;
+  letter-spacing: 0;
+  vertical-align: sub;
+}
+.daylight {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 42px;
+  border-left: 1px solid var(--line);
+  padding-left: 38px;
+}
+.daylight div {
+  display: grid;
+  gap: 8px;
+}
+.daylight span {
+  color: var(--muted);
+  font-size: 11px;
+}
+.daylight strong {
+  font:
+    500 13px "DM Mono",
+    monospace;
+}
+.sun-arc {
+  position: absolute;
+  width: 430px;
+  height: 215px;
+  right: -38px;
+  bottom: -148px;
+  border: 1px solid #e4d3af;
+  border-radius: 430px 430px 0 0;
+}
+.sun {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 10px #eecf9240;
+}
+.explanation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  padding: 70px 54px 58px;
+}
+.explanation h2 {
+  font-size: 33px;
+  line-height: 1.1;
+}
+.explanation p:last-child {
+  color: #5c6962;
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 26px 0 0;
+}
+footer {
+  margin-top: auto;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+  color: #8b918c;
+  font-size: 10px;
+  text-align: center;
+}
+@media (max-width: 680px) {
+  .page-shell {
+    padding: 22px 20px;
+  }
+  .hero {
+    padding: 54px 0 38px;
+  }
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: end;
+    gap: 12px;
+  }
+  .field,
+  .field input,
+  .city-picker,
+  .city-picker input {
+    min-width: 0;
+    width: 100%;
+  }
+  .location-button {
+    grid-column: 1 / -1;
+    width: max-content;
+  }
+  .result-card {
+    min-height: 360px;
+    padding: 38px 29px;
+    display: block;
+  }
+  .daylight {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    margin-top: 38px;
+    padding: 20px 0 0;
+  }
+  .explanation {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 52px 4px 42px;
+  }
+  .sun-arc {
+    right: -150px;
+  }
+}

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f8f2e7" />
+    <title>Astro</title>
+    <link rel="icon" type="image/png" href="assets/logo-48.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <nav class="site-nav" aria-label="Astro sections">
+        <a
+          class="site-nav-link active"
+          id="homeNav"
+          href="#home"
+          aria-current="page"
+          >Home</a
+        >
+        <a class="site-nav-link" id="raahuNav" href="#raahu-kaal">Raahu Kaal</a>
+      </nav>
+
+      <section class="home-panel" id="home" hidden>
+        <p class="eyebrow">WELCOME TO ASTRO</p>
+        <h1>Everyday guidance,<br /><em>rooted in the sky.</em></h1>
+      </section>
+
+      <div class="raahu-content" id="raahu-kaal">
+        <section class="hero">
+          <p class="intro">
+            Raahu Kaal is a daily period in Vedic astrology, traditionally
+            avoided for starting important new work. Its timing changes with the
+            day and your location.
+          </p>
+        </section>
+
+        <section class="calculator" aria-label="Raahu Kaal calculator">
+          <div class="form-grid">
+            <label class="field">
+              <span>Date</span>
+              <span class="date-picker">
+                <input
+                  id="dateInput"
+                  type="text"
+                  inputmode="numeric"
+                  placeholder="DD/MM/YYYY"
+                  aria-label="Choose a date in day month year format"
+                  aria-expanded="false"
+                  aria-controls="calendarPopup"
+                />
+                <button
+                  class="calendar-button"
+                  id="calendarButton"
+                  type="button"
+                  aria-label="Open calendar"
+                >
+                  ▦
+                </button>
+                <span
+                  class="calendar-popup"
+                  id="calendarPopup"
+                  role="dialog"
+                  aria-label="Choose a date"
+                ></span>
+              </span>
+            </label>
+            <label class="field">
+              <span>Location</span>
+              <span class="city-picker">
+                <input
+                  id="cityInput"
+                  type="search"
+                  value="New Delhi"
+                  placeholder="Search Indian city"
+                  autocomplete="off"
+                  aria-label="Search an Indian city"
+                  aria-expanded="false"
+                  aria-controls="cityResults"
+                />
+                <span
+                  class="city-results"
+                  id="cityResults"
+                  role="listbox"
+                ></span>
+              </span>
+            </label>
+            <button
+              class="location-button"
+              id="locationButton"
+              type="button"
+              title="Use my current location"
+            >
+              <span>⌖</span> Use my location
+            </button>
+          </div>
+        </section>
+
+        <section class="result-card" aria-live="polite">
+          <div class="sun-arc" aria-hidden="true">
+            <span class="sun"></span>
+          </div>
+          <div class="result-copy">
+            <p class="eyebrow" id="weekday">THURSDAY</p>
+            <p class="location-line" id="locationName">New Delhi, India</p>
+            <h2 id="raahuTime">—</h2>
+            <p class="time-zone" id="timezone">Calculating local solar time…</p>
+          </div>
+          <div class="daylight">
+            <div><span>Sunrise</span><strong id="sunrise">—</strong></div>
+            <div><span>Sunset</span><strong id="sunset">—</strong></div>
+          </div>
+        </section>
+
+        <section class="explanation">
+          <div>
+            <p class="eyebrow">HOW IT WORKS</p>
+            <h2>One of eight parts<br />of daylight.</h2>
+          </div>
+          <p>
+            The period between sunrise and sunset is divided into eight equal
+            portions. Raahu Kaal occupies a different portion on each weekday.
+            It is traditionally considered a time to avoid beginning important
+            work.
+          </p>
+        </section>
+      </div>
+
+      <footer aria-hidden="true"></footer>
+    </main>
+    <script src="cities.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
